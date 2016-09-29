@@ -1,0 +1,20 @@
+{
+  "name": "vr-bowling",
+  "version": "1.0.0",
+  "description": "Virtual Reality Bowling Game",
+  "main": "index.html",
+  "scripts": {
+    "startlin": "./run.sh",
+    "startwin": "run.bat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fahno/vr-bowling.git"
+  },
+  "author": "Fahno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fahno/vr-bowling/issues"
+  },
+  "homepage": "https://github.com/Fahno/vr-bowling#readme"
+}
