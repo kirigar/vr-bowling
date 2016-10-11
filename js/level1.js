@@ -1,21 +1,21 @@
 "use strict";
 
-function Level() {
+function Level1() {
+	this.levelObjects = [];
+}
 
-	this.scene = new Physijs.Scene;
-
-	this.scene.add( this.genLane() );
+Level1.prototype.init = function() {
+	this.levelObjects.push( this.genLane() );
 
 	const pins = this.genPins( new THREE.Vector3( 0, - 0.4, 0 ), 0.3, 4 );
 	for ( let i = 0; i < pins.length; i ++ ) {
 
-		this.scene.add( pins[ i ] );
+		this.levelObjects.push( pins[ i ] );
 
 	}
-
 }
 
-Level.prototype.genPins = function( startPosition, spacing, rows ) {
+Level1.prototype.genPins = function( startPosition, spacing, rows ) {
 
 	let offset = 0;
 	const pins = [];
@@ -40,7 +40,7 @@ Level.prototype.genPins = function( startPosition, spacing, rows ) {
 
 }
 
-Level.prototype.createPin = function() {
+Level1.prototype.createPin = function() {
 
 	const base = new Physijs.CylinderMesh( new THREE.CylinderGeometry( 0.057277, 0.03556, 0.085725, 8 ), Physijs.createMaterial( new THREE.MeshNormalMaterial(), 0, 1 ), 1 );
 
@@ -69,7 +69,7 @@ Level.prototype.createPin = function() {
 
 }
 
-Level.prototype.genLane = function() {
+Level1.prototype.genLane = function() {
 
 	const laneFriction = 100, laneRestitution = 0.1;
 	const lane = new Physijs.BoxMesh( new THREE.BoxGeometry( 1.0541, 0.1, 18.28800 ), Physijs.createMaterial( new THREE.MeshNormalMaterial(), laneFriction, laneRestitution ), 0 );
@@ -90,12 +90,13 @@ Level.prototype.genLane = function() {
 	lane.add( this.createGutter( new THREE.Vector3( - 0.641, - 0.0228, 0 ) ) );
 	lane.add( invisibleWallRight );
 	lane.add( invisibleWallLeft );
+	lane.name = "ground";
 
 	return lane;
 
 }
 
-Level.prototype.createGutter = function( position ) {
+Level1.prototype.createGutter = function( position ) {
 
 	const gutterMiddle = new Physijs.BoxMesh( new THREE.BoxGeometry( 0.1, 0.01, 18.28800 ), Physijs.createMaterial( new THREE.MeshNormalMaterial(), 1, 0 ), 0 );
 	gutterMiddle.position.x = position.x;
